@@ -1,10 +1,11 @@
 package data
 
 type PromotionDetails struct {
-	PromotionName	   string
+	PromotionName      string
 	ProductName        string
 	MinimumQuantity    int
 	DiscountPercentage float64
+	DiscountAmount     float64
 	AdditionalDetails  map[string]string
 }
 

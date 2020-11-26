@@ -5,9 +5,9 @@ import (
 	"checkoutService/models/dto"
 )
 
-type WaiveOneProductPrice struct{}
+type DiscountAmountOnTotalPrice struct{}
 
-func (WaiveOneProductPrice) Apply(cart dto.ShoppingCart, promotion data.PromotionDetails) dto.ShoppingCart {
+func (DiscountAmountOnTotalPrice) Apply(cart dto.ShoppingCart, promotion data.PromotionDetails) dto.ShoppingCart {
 	var count int
 	for _, product := range cart.Products {
 		if product.Name == promotion.ProductName {
@@ -20,6 +20,6 @@ func (WaiveOneProductPrice) Apply(cart dto.ShoppingCart, promotion data.Promotio
 
 	return dto.ShoppingCart {
 		Products:   cart.Products,
-		TotalPrice: cart.TotalPrice - (cart.Products[0].Price),
+		TotalPrice: cart.TotalPrice - promotion.DiscountAmount,
 	}
 }

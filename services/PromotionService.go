@@ -10,7 +10,7 @@ func applyPromos(cart dto.ShoppingCart, promos []data.PromotionDetails) dto.Shop
 	for _, promo := range promos {
 		switch promo.PromotionName {
 		case "BuyTwoGetOne":
-			waiveOneProductPrice := promotions.WaiveOneProductPrice{}
+			waiveOneProductPrice := promotions.DiscountAmountOnTotalPrice{}
 			return waiveOneProductPrice.Apply(cart, promo)
 		case "RaspberryPi":
 			provideRaspberryPiFree := promotions.ProvideAFreeProduct{}
