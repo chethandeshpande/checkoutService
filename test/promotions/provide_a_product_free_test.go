@@ -3,11 +3,12 @@ package promotions
 import (
 	"checkoutService/models/data"
 	"checkoutService/models/dto"
+	"checkoutService/promotions"
 	"testing"
 )
 
 func TestShouldProvideAProductFree(t *testing.T) {
-	provideAFreeProduct := ProvideAFreeProduct{}
+	provideAFreeProduct := promotions.ProvideAFreeProduct{}
 
 	products := []dto.Product{{
 		Name:  "Macbook Pro",
@@ -34,7 +35,7 @@ func TestShouldProvideAProductFree(t *testing.T) {
 }
 
 func TestShouldProvideAProductFreeWhenMoreThanMinimumQuantityIsProvided(t *testing.T) {
-	provideAFreeProduct := ProvideAFreeProduct{}
+	provideAFreeProduct := promotions.ProvideAFreeProduct{}
 
 	products := []dto.Product{
 		{
@@ -66,7 +67,7 @@ func TestShouldProvideAProductFreeWhenMoreThanMinimumQuantityIsProvided(t *testi
 }
 
 func TestShouldNotApplyPromotionWhenThereAreNoProducts(t *testing.T) {
-	provideAFreeProduct := ProvideAFreeProduct{}
+	provideAFreeProduct := promotions.ProvideAFreeProduct{}
 
 	cart := dto.ShoppingCart{
 		Products:   []dto.Product{},
@@ -89,7 +90,7 @@ func TestShouldNotApplyPromotionWhenThereAreNoProducts(t *testing.T) {
 }
 
 func TestShouldNotApplyPromotionIfMinimumQuantityIsNotSelected(t *testing.T) {
-	provideAFreeProduct := ProvideAFreeProduct{}
+	provideAFreeProduct := promotions.ProvideAFreeProduct{}
 	products := []dto.Product{{
 		Name:  "Macbook Pro",
 		Price: 1,
@@ -116,7 +117,7 @@ func TestShouldNotApplyPromotionIfMinimumQuantityIsNotSelected(t *testing.T) {
 }
 
 func TestShouldNotApplyPromotionIfPromotionIsNotForSameProduct(t *testing.T) {
-	provideAFreeProduct := ProvideAFreeProduct{}
+	provideAFreeProduct := promotions.ProvideAFreeProduct{}
 	products := []dto.Product{{
 		Name:  "Macbook Pro",
 		Price: 1,
