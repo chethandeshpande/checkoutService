@@ -6,7 +6,7 @@ import (
 	"checkoutService/promotions"
 )
 
-func applyPromos(cart dto.ShoppingCart, promos []data.PromotionDetails) dto.ShoppingCart {
+func ApplyPromos(cart dto.ShoppingCart, promos []data.PromotionDetails) dto.ShoppingCart {
 	for _, promo := range promos {
 		switch promo.PromotionName {
 		case "BuyTwoGetOne":
