@@ -25,7 +25,7 @@ func getAllPromotionStrategies() promotionStrategyMap {
 	return strategyMap
 }
 
-func getPromoStrategy(promoName string) promotions.Promotion {
+func GetPromotionStrategy(promoName string) promotions.Promotion {
 	strategies := getAllPromotionStrategies()
 	if strategies[promoName] != nil {
 		return strategies[promoName]
