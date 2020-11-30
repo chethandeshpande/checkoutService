@@ -3,24 +3,13 @@ package services
 import (
 	"checkoutService/models/data"
 	"checkoutService/models/dto"
-	"checkoutService/promotions"
 )
 
 func ApplyPromos(cart dto.ShoppingCart, promos []data.PromotionDetails) dto.ShoppingCart {
+	cartAfterAppliedPromos := cart
 	for _, promo := range promos {
-		switch promo.PromotionName {
-		case "BuyTwoGetOne":
-			waiveOneProductPrice := promotions.DiscountAmountOnTotalPrice{}
-			return waiveOneProductPrice.Apply(cart, promo)
-		case "RaspberryPi":
-			provideRaspberryPiFree := promotions.ProvideAFreeProduct{}
-			return provideRaspberryPiFree.Apply(cart, promo)
-		case "TenPercentOff":
-			provideTenPercentOff := promotions.ProvideDiscount{}
-			return provideTenPercentOff.Apply(cart, promo)
-		default:
-			return cart
-		}
+		promoStrategy := getPromoStrategy(promo.PromotionName)
+		cartAfterAppliedPromos = promoStrategy.Apply(cartAfterAppliedPromos, promo)
 	}
-	return cart
+	return cartAfterAppliedPromos
 }

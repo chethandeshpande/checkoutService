@@ -28,7 +28,7 @@ func TestShouldReturnPotentialPromotionsForTheProductsInTheCart(t *testing.T) {
 
 	promoToProductMap := make(map[string]data.PromotionDetails)
 	promoToProductMap["Macbook Pro"] = promo
-	potentialPromos := services.GetPotentialPromos(cart, data.ProductPromotionMap{
+	potentialPromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
 		Promotions: promoToProductMap,
 	})
 
@@ -61,7 +61,7 @@ func TestShouldReturnOnlyOnePromotionWhenSameProductIsSelectedMultipleTimes(t *t
 
 	promoToProductMap := make(map[string]data.PromotionDetails)
 	promoToProductMap["Macbook Pro"] = promo
-	potentialPromos := services.GetPotentialPromos(cart, data.ProductPromotionMap{
+	potentialPromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
 		Promotions: promoToProductMap,
 	})
 
@@ -104,7 +104,7 @@ func TestShouldReturnPromotionsRespectiveToTheProductsSelected(t *testing.T) {
 	promoToProductMap := make(map[string]data.PromotionDetails)
 	promoToProductMap["Macbook Pro"] = macbookPro
 	promoToProductMap["Alexa Speaker"] = alexaSpeaker
-	potentialPromos := services.GetPotentialPromos(cart, data.ProductPromotionMap{
+	potentialPromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
 		Promotions: promoToProductMap,
 	})
 
@@ -128,7 +128,7 @@ func TestShouldReturnNoPromosWhenNoPromosAreAvailable(t *testing.T) {
 		TotalPrice: 0,
 	}
 	promoToProductMap := make(map[string]data.PromotionDetails)
-	potentialPromos := services.GetPotentialPromos(cart, data.ProductPromotionMap{
+	potentialPromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
 		Promotions: promoToProductMap,
 	})
 

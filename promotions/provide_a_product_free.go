@@ -8,16 +8,6 @@ import (
 type ProvideAFreeProduct struct{}
 
 func (ProvideAFreeProduct) Apply(cart dto.ShoppingCart, promotion data.PromotionDetails) dto.ShoppingCart {
-	var count int
-	for _, product := range cart.Products {
-		if product.Name == promotion.ProductName {
-			count++
-		}
-	}
-	if count < promotion.MinimumQuantity {
-		return cart
-	}
-
 	return dto.ShoppingCart{
 		Products: append(cart.Products, dto.Product{
 			Name: promotion.AdditionalDetails["FreeProduct"],

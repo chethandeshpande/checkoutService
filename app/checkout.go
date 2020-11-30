@@ -8,7 +8,7 @@ import (
 
 
 func Checkout(cart dto.ShoppingCart, promotions data.ProductPromotionMap) dto.ShoppingCart {
-	applicablePromos := services.GetPotentialPromos(cart, promotions)
+	applicablePromos := services.GetApplicablePromos(cart, promotions)
 	cartWithAppliedPromos := services.ApplyPromos(cart, applicablePromos)
 	return cartWithAppliedPromos
 }
