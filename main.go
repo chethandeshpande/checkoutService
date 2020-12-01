@@ -97,7 +97,7 @@ func main() {
 	googleHomePromo := data.PromotionDetails{
 		PromotionName:      "BuyTwoGetOne",
 		ProductName:        "Google Home",
-		MinimumQuantity:    2,
+		MinimumQuantity:    3,
 		DiscountAmount:     googleHome.Price,
 		DiscountPercentage: 0,
 	}
