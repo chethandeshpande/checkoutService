@@ -23,10 +23,12 @@ func TestShouldProvideAProductFree(t *testing.T) {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
-	}
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
+		}	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
 	if len(cartAfterPromo.Products) != 2 || cartAfterPromo.Products[1].Name != "Raspberry Pi" {
@@ -55,10 +57,12 @@ func TestShouldProvideAProductFreeWhenMoreThanMinimumQuantityIsProvided(t *testi
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
-	}
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
+		}	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
 	if len(cartAfterPromo.Products) != 3 || cartAfterPromo.Products[2].Name != "Raspberry Pi" {
@@ -78,10 +82,12 @@ func TestShouldNotApplyPromotionWhenThereAreNoProducts(t *testing.T) {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
-	}
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
+		}	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
 	if len(cartAfterPromo.Products) != 0 {
@@ -105,10 +111,12 @@ func TestShouldNotApplyPromotionIfMinimumQuantityIsNotSelected(t *testing.T) {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    2,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
-	}
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
+		}	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
 	if len(cartAfterPromo.Products) != len(cart.Products) {
@@ -132,10 +140,12 @@ func TestShouldNotApplyPromotionIfPromotionIsNotForSameProduct(t *testing.T) {
 		ProductName:        "Google home",
 		MinimumQuantity:    2,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
-	}
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
+		}}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
 	if len(cartAfterPromo.Products) != len(cart.Products) {

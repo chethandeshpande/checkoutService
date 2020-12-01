@@ -26,8 +26,11 @@ func main() {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
 		},
 	}
 	alexaSpeakerPromo := data.PromotionDetails{

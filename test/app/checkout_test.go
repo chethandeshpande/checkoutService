@@ -1,6 +1,7 @@
 package app
 
 import (
+	"checkoutService/app"
 	"checkoutService/models/data"
 	"checkoutService/models/dto"
 	"math"
@@ -21,8 +22,11 @@ func TestShouldProvideAFreeRaspberryPiOnBuyingAMacbookPro(t *testing.T) {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
 		},
 	}
 	alexaDiscountPromotion := data.PromotionDetails{
@@ -44,7 +48,7 @@ func TestShouldProvideAFreeRaspberryPiOnBuyingAMacbookPro(t *testing.T) {
 		"Alexa Speakers": alexaDiscountPromotion,
 		"Google Home":    googleHomePromotion,
 	}
-	cartAfterPromo := Checkout(cart, data.ProductPromotionMap{Promotions: promotions})
+	cartAfterPromo := app.Checkout(cart, data.ProductPromotionMap{Promotions: promotions})
 
 	if len(cartAfterPromo.Products) != 2 ||
 		cartAfterPromo.TotalPrice != cart.TotalPrice ||
@@ -73,8 +77,11 @@ func TestShouldProvideTenPercentDiscountOnBuyingThreeAlexaSpeakers(t *testing.T)
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
 		},
 	}
 	alexaDiscountPromotion := data.PromotionDetails{
@@ -96,7 +103,7 @@ func TestShouldProvideTenPercentDiscountOnBuyingThreeAlexaSpeakers(t *testing.T)
 		"Alexa Speakers": alexaDiscountPromotion,
 		"Google Home":    googleHomePromotion,
 	}
-	cartAfterPromo := Checkout(cart, data.ProductPromotionMap{Promotions: promotions})
+	cartAfterPromo := app.Checkout(cart, data.ProductPromotionMap{Promotions: promotions})
 
 	if diff := math.Abs(cartAfterPromo.TotalPrice - 295.65); diff > 0.000001 || len(cartAfterPromo.Products) != 3 {
 		t.Errorf("Alexa Speakers Promotion not Applied!")
@@ -123,8 +130,11 @@ func TestShouldProvideThreeGoogleHomesAtThePriceOfTwo(t *testing.T) {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
 		},
 	}
 	alexaDiscountPromotion := data.PromotionDetails{
@@ -146,7 +156,7 @@ func TestShouldProvideThreeGoogleHomesAtThePriceOfTwo(t *testing.T) {
 		"Alexa Speakers": alexaDiscountPromotion,
 		"Google Home":    googleHomePromotion,
 	}
-	cartAfterPromo := Checkout(cart, data.ProductPromotionMap{Promotions: promotions})
+	cartAfterPromo := app.Checkout(cart, data.ProductPromotionMap{Promotions: promotions})
 
 	if diff := math.Abs(cartAfterPromo.TotalPrice - 99.98); diff > 0.000001 || len(cartAfterPromo.Products) != 3 {
 		t.Errorf("Google Home Promotion not Applied!")
@@ -167,8 +177,11 @@ func TestShouldNotApplyAnyPromotion(t *testing.T) {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
 		},
 	}
 	alexaDiscountPromotion := data.PromotionDetails{
@@ -190,7 +203,7 @@ func TestShouldNotApplyAnyPromotion(t *testing.T) {
 		"Alexa Speakers": alexaDiscountPromotion,
 		"Google Home":    googleHomePromotion,
 	}
-	cartAfterPromo := Checkout(cart, data.ProductPromotionMap{Promotions: promotions})
+	cartAfterPromo := app.Checkout(cart, data.ProductPromotionMap{Promotions: promotions})
 
 	if diff := math.Abs(cartAfterPromo.TotalPrice - 30.00); diff > 0.000001 || len(cartAfterPromo.Products) != 1 {
 		t.Errorf("Promotion Applied!")
@@ -220,8 +233,11 @@ func TestShouldApplyMultiplePromotions(t *testing.T) {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
 		},
 	}
 	alexaDiscountPromotion := data.PromotionDetails{
@@ -243,7 +259,7 @@ func TestShouldApplyMultiplePromotions(t *testing.T) {
 		"Alexa Speakers": alexaDiscountPromotion,
 		"Google Home":    googleHomePromotion,
 	}
-	cartAfterPromo := Checkout(cart, data.ProductPromotionMap{Promotions: promotions})
+	cartAfterPromo := app.Checkout(cart, data.ProductPromotionMap{Promotions: promotions})
 
 	if diff := math.Abs(cartAfterPromo.TotalPrice - 5499.97); diff > 0.000001 || len(cartAfterPromo.Products) != 5 {
 		t.Errorf("Macbook Pro and Google Home promotions not applied!")

@@ -20,9 +20,6 @@ func TestShouldNotProvideDiscountIfThereAreNoProducts(t *testing.T) {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
 	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
@@ -47,9 +44,6 @@ func TestShouldNotProvideDiscountIfPromotionIsNotForSameProduct(t *testing.T) {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
 	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
@@ -74,9 +68,6 @@ func TestShouldNotProvideDiscountIfMinimumQuantityIsNotMet(t *testing.T) {
 		ProductName:        "Alexa Speakers",
 		MinimumQuantity:    2,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
 	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
@@ -101,9 +92,6 @@ func TestShouldProvideDiscount(t *testing.T) {
 		ProductName:        "Alexa Speakers",
 		MinimumQuantity:    1,
 		DiscountPercentage: 10,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
 	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
@@ -131,9 +119,6 @@ func TestShouldProvideDiscountWhenMoreThanMinimumQuantityIsSelected(t *testing.T
 		ProductName:        "Alexa Speakers",
 		MinimumQuantity:    1,
 		DiscountPercentage: 10,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
 	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 

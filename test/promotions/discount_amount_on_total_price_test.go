@@ -20,9 +20,6 @@ func TestShouldNotWaiveOneProductPriceIfThereAreNoProducts(t *testing.T) {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
 	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
@@ -47,9 +44,6 @@ func TestShouldNotWaiveOneProductPriceIfPromotionIsNotForSameProduct(t *testing.
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
 	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
@@ -74,9 +68,6 @@ func TestShouldNotWaiveOneProductPriceIfMinimumQuantityIsNotMet(t *testing.T) {
 		ProductName:        "Google Home",
 		MinimumQuantity:    2,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
 	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
@@ -102,9 +93,6 @@ func TestShouldWaiveOneProductPrice(t *testing.T) {
 		MinimumQuantity:    1,
 		DiscountPercentage: 10,
 		DiscountAmount:     10,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
 	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
@@ -133,9 +121,6 @@ func TestShouldWaiveOneProductPriceWhenMoreThanMinimumQuantityIsSelected(t *test
 		MinimumQuantity:    1,
 		DiscountPercentage: 10,
 		DiscountAmount:     10,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
 	}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 

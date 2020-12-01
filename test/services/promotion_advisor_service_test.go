@@ -21,10 +21,12 @@ func TestShouldReturnPotentialPromotionsForTheProductsInTheCart(t *testing.T) {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
-	}
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
+		}}
 
 	promoToProductMap := make(map[string]data.PromotionDetails)
 	promoToProductMap["Macbook Pro"] = promo
@@ -54,10 +56,12 @@ func TestShouldReturnOnlyOnePromotionWhenSameProductIsSelectedMultipleTimes(t *t
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
-	}
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
+		}}
 
 	promoToProductMap := make(map[string]data.PromotionDetails)
 	promoToProductMap["Macbook Pro"] = promo
@@ -87,18 +91,17 @@ func TestShouldReturnPromotionsRespectiveToTheProductsSelected(t *testing.T) {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
-	}
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
+		}}
 	alexaSpeaker := data.PromotionDetails{
 		PromotionName:      "10PercentOff",
 		ProductName:        "Alexa Speaker",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
 	}
 
 	promoToProductMap := make(map[string]data.PromotionDetails)

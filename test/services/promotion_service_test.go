@@ -24,10 +24,12 @@ func TestShouldApplyApplicablePromotions(t *testing.T) {
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
-	}
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
+		}	}
 	cartAfterPromo := services.ApplyPromos(cart, []data.PromotionDetails{promo})
 
 	if len(cartAfterPromo.Products) != 3 || cartAfterPromo.TotalPrice != cart.TotalPrice {

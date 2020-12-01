@@ -24,9 +24,6 @@ func TestShouldReturnPromotionStrategy(t *testing.T) {
 		MinimumQuantity:    1,
 		DiscountPercentage: 10,
 		DiscountAmount:     10,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
 	}
 
 	cartAfterPromo := strategy.Apply(cart, promo)
@@ -52,9 +49,6 @@ func TestShouldReturnDefaultPromotionStrategy(t *testing.T) {
 		MinimumQuantity:    1,
 		DiscountPercentage: 10,
 		DiscountAmount:     10,
-		AdditionalDetails: map[string]string{
-			"FreeProduct": "Raspberry Pi",
-		},
 	}
 
 	cartAfterPromo := strategy.Apply(cart, promo)
