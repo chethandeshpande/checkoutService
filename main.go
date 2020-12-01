@@ -22,7 +22,7 @@ func main() {
 	fmt.Print("Each sale of a MacBook Pro comes with a free Raspberry Pi B\n")
 	fmt.Print("Buy 3 Google Homes for the price of 2\n")
 	fmt.Print("Buying more than 3 Alexa Speakers will have a 10% discount on all Alexa speakers\n\n")
-	fmt.Print("Please select products and quantity[Enter 1:[quantity],2:[quantity],3:[quantity] to select products]: \n")
+	fmt.Print("Please select products and quantity: \n")
 	fmt.Print("Enter in 1:[quantity],2:[quantity],3:[quantity] format to select products and quantity: \n")
 	reader := bufio.NewReader(os.Stdin)
 	input, err := reader.ReadString('\n')
