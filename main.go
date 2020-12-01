@@ -84,6 +84,7 @@ func main() {
 			FreeProduct: data.Product{
 				Name:  "Raspberry Pi",
 				Price: 30,
+				Quantity: 1,
 			},
 		},
 	}
