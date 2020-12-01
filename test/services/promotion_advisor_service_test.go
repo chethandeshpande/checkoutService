@@ -11,6 +11,7 @@ func TestShouldReturnApplicablePromotionsForTheProductsInTheCart(t *testing.T) {
 	products := []dto.Product{{
 		Name:  "Macbook Pro",
 		Price: 1,
+		Quantity: 1,
 	}}
 	cart := dto.ShoppingCart{
 		Products:   products,
@@ -35,7 +36,7 @@ func TestShouldReturnApplicablePromotionsForTheProductsInTheCart(t *testing.T) {
 	})
 
 	if len(applicablePromos) != 1 {
-		t.Errorf("Applicable Promotion not returned!")
+		t.Errorf("Applicable Promotion not returned! Expected: 1")
 	}
 }
 
@@ -43,9 +44,7 @@ func TestShouldReturnOnlyOnePromotionWhenSameProductIsSelectedMultipleTimes(t *t
 	products := []dto.Product{{
 		Name:  "Macbook Pro",
 		Price: 1,
-	},{
-		Name:  "Macbook Pro",
-		Price: 1,
+		Quantity: 2,
 	}}
 	cart := dto.ShoppingCart{
 		Products:   products,
@@ -70,7 +69,7 @@ func TestShouldReturnOnlyOnePromotionWhenSameProductIsSelectedMultipleTimes(t *t
 	})
 
 	if len(applicablePromos) != 1 {
-		t.Errorf("Applicable Promotion not returned!")
+		t.Errorf("Applicable Promotion not returned! Expected: 1")
 	}
 }
 
@@ -78,9 +77,11 @@ func TestShouldReturnPromotionsRespectiveToTheProductsSelected(t *testing.T) {
 	products := []dto.Product{{
 		Name:  "Macbook Pro",
 		Price: 1,
+		Quantity: 1,
 	},{
 		Name:  "Alexa Speaker",
 		Price: 1,
+		Quantity: 1,
 	}}
 	cart := dto.ShoppingCart{
 		Products:   products,
@@ -114,7 +115,7 @@ func TestShouldReturnPromotionsRespectiveToTheProductsSelected(t *testing.T) {
 	if len(applicablePromos) != 2 ||
 		applicablePromos[0].ProductName != "Macbook Pro" ||
 		applicablePromos[1].ProductName != "Alexa Speaker" {
-		t.Errorf("Applicable Promotion not returned!")
+		t.Errorf("Applicable Promotion not returned! Expected: 2")
 	}
 }
 
@@ -136,7 +137,7 @@ func TestShouldReturnNoPromosWhenNoPromosAreAvailable(t *testing.T) {
 	})
 
 	if len(applicablePromos) != 0 {
-		t.Errorf("Applicable Promotion returned!")
+		t.Errorf("Applicable Promotion returned! Expected: 0")
 	}
 }
 
@@ -164,7 +165,7 @@ func TestShouldReturnPromotionWhenThereAreNoProducts(t *testing.T) {
 	})
 
 	if len(applicablePromos) != 0 {
-		t.Errorf("Promotion returned!")
+		t.Errorf("Promotion returned! Expected: 0")
 	}
 }
 
@@ -196,7 +197,7 @@ func TestShouldNotApplyPromotionIfMinimumQuantityIsNotSelected(t *testing.T) {
 	})
 
 	if len(applicablePromos) != 0 {
-		t.Errorf("Promotion returned!")
+		t.Errorf("Promotion returned! Expected: 0")
 	}
 }
 
@@ -228,6 +229,6 @@ func TestShouldReturnPromotionIfPromotionIsNotForSameProduct(t *testing.T) {
 	})
 
 	if len(applicablePromos) != 0 {
-		t.Errorf("Promotion returned!")
+		t.Errorf("Promotion returned! Expected: 0")
 	}
 }

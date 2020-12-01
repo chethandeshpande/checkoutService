@@ -12,7 +12,7 @@ func GetApplicablePromos(cart dto.ShoppingCart, promotions data.ProductPromotion
 		if _, isPromoAvailableForProduct := promotions.Promotions[product.Name]; isPromoAvailableForProduct {
 			if _, isPromoAlreadyApplied := alreadyAppliedPromos[product.Name]; !isPromoAlreadyApplied {
 				promo := promotions.Promotions[product.Name]
-				if isPromoEligible(promo, cart) {
+				if isPromoEligible(promo, product) {
 					alreadyAppliedPromos[product.Name] = true
 					applicablePromos = append(applicablePromos, promo)
 				}
@@ -22,13 +22,6 @@ func GetApplicablePromos(cart dto.ShoppingCart, promotions data.ProductPromotion
 	return applicablePromos
 }
 
-func isPromoEligible(promo data.PromotionDetails, cart dto.ShoppingCart) bool {
-	var count int
-	for _, product := range cart.Products {
-		if product.Name == promo.ProductName {
-			count++
-		}
-	}
-
-	return count >= promo.MinimumQuantity
+func isPromoEligible(promo data.PromotionDetails, product dto.Product) bool {
+	return product.Quantity >= promo.MinimumQuantity
 }

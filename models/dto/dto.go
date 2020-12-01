@@ -8,5 +8,5 @@ type ShoppingCart struct {
 type Product struct {
 	Name     string
 	Price    float64
-	quantity int
+	Quantity int
 }

@@ -4,20 +4,18 @@ import (
 	"checkoutService/models/data"
 	"checkoutService/models/dto"
 	"checkoutService/services"
+	"math"
 	"testing"
 )
 
 func TestShouldApplyApplicablePromotions(t *testing.T) {
 	products := []dto.Product{{
 		Name:  "Macbook Pro",
-		Price: 1,
-	},{
-		Name:  "Macbook Pro",
-		Price: 1,
+		Price: 100,
 	}}
 	cart := dto.ShoppingCart{
 		Products:   products,
-		TotalPrice: 1,
+		TotalPrice: 100,
 	}
 	promo := data.PromotionDetails{
 		PromotionName:      "RaspberryPi",
@@ -32,7 +30,7 @@ func TestShouldApplyApplicablePromotions(t *testing.T) {
 		}	}
 	cartAfterPromo := services.ApplyPromos(cart, []data.PromotionDetails{promo})
 
-	if len(cartAfterPromo.Products) != 3 || cartAfterPromo.TotalPrice != cart.TotalPrice {
-		t.Errorf("Applicable promotion not applied!")
+	if diff := math.Abs(cartAfterPromo.TotalPrice - 100); diff > 0.000001 || len(cartAfterPromo.Products) != 2  {
+		t.Errorf("Applicable promotion not applied! Expected: RaspberryPi to be applied")
 	}
 }
