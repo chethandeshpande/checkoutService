@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestShouldReturnPotentialPromotionsForTheProductsInTheCart(t *testing.T) {
+func TestShouldReturnApplicablePromotionsForTheProductsInTheCart(t *testing.T) {
 	products := []dto.Product{{
 		Name:  "Macbook Pro",
 		Price: 1,
@@ -30,11 +30,11 @@ func TestShouldReturnPotentialPromotionsForTheProductsInTheCart(t *testing.T) {
 
 	promoToProductMap := make(map[string]data.PromotionDetails)
 	promoToProductMap["Macbook Pro"] = promo
-	potentialPromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
+	applicablePromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
 		Promotions: promoToProductMap,
 	})
 
-	if len(potentialPromos) != 1 {
+	if len(applicablePromos) != 1 {
 		t.Errorf("Applicable Promotion not returned!")
 	}
 }
@@ -65,11 +65,11 @@ func TestShouldReturnOnlyOnePromotionWhenSameProductIsSelectedMultipleTimes(t *t
 
 	promoToProductMap := make(map[string]data.PromotionDetails)
 	promoToProductMap["Macbook Pro"] = promo
-	potentialPromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
+	applicablePromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
 		Promotions: promoToProductMap,
 	})
 
-	if len(potentialPromos) != 1 {
+	if len(applicablePromos) != 1 {
 		t.Errorf("Applicable Promotion not returned!")
 	}
 }
@@ -107,13 +107,13 @@ func TestShouldReturnPromotionsRespectiveToTheProductsSelected(t *testing.T) {
 	promoToProductMap := make(map[string]data.PromotionDetails)
 	promoToProductMap["Macbook Pro"] = macbookPro
 	promoToProductMap["Alexa Speaker"] = alexaSpeaker
-	potentialPromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
+	applicablePromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
 		Promotions: promoToProductMap,
 	})
 
-	if len(potentialPromos) != 2 ||
-		potentialPromos[0].ProductName != "Macbook Pro" ||
-		potentialPromos[1].ProductName != "Alexa Speaker" {
+	if len(applicablePromos) != 2 ||
+		applicablePromos[0].ProductName != "Macbook Pro" ||
+		applicablePromos[1].ProductName != "Alexa Speaker" {
 		t.Errorf("Applicable Promotion not returned!")
 	}
 }
@@ -131,11 +131,103 @@ func TestShouldReturnNoPromosWhenNoPromosAreAvailable(t *testing.T) {
 		TotalPrice: 0,
 	}
 	promoToProductMap := make(map[string]data.PromotionDetails)
-	potentialPromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
+	applicablePromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
 		Promotions: promoToProductMap,
 	})
 
-	if len(potentialPromos) != 0 {
+	if len(applicablePromos) != 0 {
 		t.Errorf("Applicable Promotion returned!")
+	}
+}
+
+func TestShouldReturnPromotionWhenThereAreNoProducts(t *testing.T) {
+	cart := dto.ShoppingCart{
+		Products:   []dto.Product{},
+		TotalPrice: 0,
+	}
+	promo := data.PromotionDetails{
+		PromotionName:      "RaspberryPi",
+		ProductName:        "Macbook Pro",
+		MinimumQuantity:    1,
+		DiscountPercentage: 0,
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
+		}}
+
+	promoToProductMap := make(map[string]data.PromotionDetails)
+	promoToProductMap["Macbook Pro"] = promo
+	applicablePromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
+		Promotions: promoToProductMap,
+	})
+
+	if len(applicablePromos) != 0 {
+		t.Errorf("Promotion returned!")
+	}
+}
+
+func TestShouldNotApplyPromotionIfMinimumQuantityIsNotSelected(t *testing.T) {
+	products := []dto.Product{{
+		Name:  "Macbook Pro",
+		Price: 1,
+	}}
+	cart := dto.ShoppingCart{
+		Products:   products,
+		TotalPrice: 0,
+	}
+	promo := data.PromotionDetails{
+		PromotionName:      "RaspberryPi",
+		ProductName:        "Macbook Pro",
+		MinimumQuantity:    2,
+		DiscountPercentage: 0,
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
+		}}
+
+	promoToProductMap := make(map[string]data.PromotionDetails)
+	promoToProductMap["Macbook Pro"] = promo
+	applicablePromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
+		Promotions: promoToProductMap,
+	})
+
+	if len(applicablePromos) != 0 {
+		t.Errorf("Promotion returned!")
+	}
+}
+
+func TestShouldReturnPromotionIfPromotionIsNotForSameProduct(t *testing.T) {
+	products := []dto.Product{{
+		Name:  "Macbook Pro",
+		Price: 1,
+	}}
+	cart := dto.ShoppingCart{
+		Products:   products,
+		TotalPrice: 0,
+	}
+	promo := data.PromotionDetails{
+		PromotionName:      "RaspberryPi",
+		ProductName:        "Google Home",
+		MinimumQuantity:    1,
+		DiscountPercentage: 0,
+		AdditionalDetails: data.AdditionalDetails{
+			FreeProduct: data.Product{
+				Name:  "Raspberry Pi",
+				Price: 30,
+			},
+		}}
+
+	promoToProductMap := make(map[string]data.PromotionDetails)
+	promoToProductMap["Macbook Pro"] = promo
+	applicablePromos := services.GetApplicablePromos(cart, data.ProductPromotionMap{
+		Promotions: promoToProductMap,
+	})
+
+	if len(applicablePromos) != 0 {
+		t.Errorf("Promotion returned!")
 	}
 }
