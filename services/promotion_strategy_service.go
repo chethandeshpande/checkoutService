@@ -16,9 +16,9 @@ var (
 func getAllPromotionStrategies() promotionStrategyMap {
 	once.Do(func() {
 		strategyMap = map[string]promotions.Promotion{
-			"BuyTwoGetOne":  promotions.DiscountAmountOnTotalPrice{},
-			"RaspberryPiFree":   promotions.ProvideAFreeProduct{},
-			"TenPercentOff": promotions.ProvideDiscount{},
+			"BuyTwoGetOne":    promotions.DiscountAmountOnTotalPrice{},
+			"RaspberryPiFree": promotions.ProvideAFreeProduct{},
+			"TenPercentOff":   promotions.ProvideDiscount{},
 		}
 	})
 

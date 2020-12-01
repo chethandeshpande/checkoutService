@@ -11,8 +11,8 @@ func TestShouldProvideAProductFree(t *testing.T) {
 	provideAFreeProduct := promotions.ProvideAFreeProduct{}
 
 	products := []dto.Product{{
-		Name:  "Macbook Pro",
-		Price: 1,
+		Name:     "Macbook Pro",
+		Price:    1,
 		Quantity: 1,
 	}}
 	cart := dto.ShoppingCart{
@@ -29,7 +29,7 @@ func TestShouldProvideAProductFree(t *testing.T) {
 				Name:  "Raspberry Pi",
 				Price: 30,
 			},
-		}	}
+		}}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
 	if len(cartAfterPromo.Products) != 2 || cartAfterPromo.Products[1].Name != "Raspberry Pi" {
@@ -41,12 +41,12 @@ func TestShouldUpdateQuantityOfFreeProductIfAlreadyAdded(t *testing.T) {
 	provideAFreeProduct := promotions.ProvideAFreeProduct{}
 
 	products := []dto.Product{{
-		Name:  "Macbook Pro",
-		Price: 1,
+		Name:     "Macbook Pro",
+		Price:    1,
 		Quantity: 1,
-	},{
-		Name:  "Raspberry Pi",
-		Price: 30,
+	}, {
+		Name:     "Raspberry Pi",
+		Price:    30,
 		Quantity: 1,
 	}}
 	cart := dto.ShoppingCart{
@@ -63,7 +63,7 @@ func TestShouldUpdateQuantityOfFreeProductIfAlreadyAdded(t *testing.T) {
 				Name:  "Raspberry Pi",
 				Price: 30,
 			},
-		}	}
+		}}
 	cartAfterPromo := provideAFreeProduct.Apply(cart, promo)
 
 	if len(cartAfterPromo.Products) != 2 ||

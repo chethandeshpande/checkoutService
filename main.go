@@ -66,7 +66,7 @@ func main() {
 		}
 		product.Quantity = quantity
 		products = append(products, product)
-		totalPrice += product.Price * math.Round(float64(product.Quantity)*100)/100
+		totalPrice += product.Price * math.Round(float64(product.Quantity)*100) / 100
 	}
 
 	shoppingCart := dto.ShoppingCart{
@@ -82,8 +82,8 @@ func main() {
 		DiscountPercentage: 0,
 		AdditionalDetails: data.AdditionalDetails{
 			FreeProduct: data.Product{
-				Name:  "Raspberry Pi",
-				Price: 30,
+				Name:     "Raspberry Pi",
+				Price:    30,
 				Quantity: 1,
 			},
 		},

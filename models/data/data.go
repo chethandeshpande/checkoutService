@@ -1,8 +1,8 @@
 package data
 
 type Product struct {
-	Name string
-	Price float64
+	Name     string
+	Price    float64
 	Quantity int
 }
 

@@ -9,8 +9,8 @@ import (
 
 func TestShouldReturnApplicablePromotionsForTheProductsInTheCart(t *testing.T) {
 	products := []dto.Product{{
-		Name:  "Macbook Pro",
-		Price: 1,
+		Name:     "Macbook Pro",
+		Price:    1,
 		Quantity: 1,
 	}}
 	cart := dto.ShoppingCart{
@@ -42,8 +42,8 @@ func TestShouldReturnApplicablePromotionsForTheProductsInTheCart(t *testing.T) {
 
 func TestShouldReturnOnlyOnePromotionWhenSameProductIsSelectedMultipleTimes(t *testing.T) {
 	products := []dto.Product{{
-		Name:  "Macbook Pro",
-		Price: 1,
+		Name:     "Macbook Pro",
+		Price:    1,
 		Quantity: 2,
 	}}
 	cart := dto.ShoppingCart{
@@ -75,12 +75,12 @@ func TestShouldReturnOnlyOnePromotionWhenSameProductIsSelectedMultipleTimes(t *t
 
 func TestShouldReturnPromotionsRespectiveToTheProductsSelected(t *testing.T) {
 	products := []dto.Product{{
-		Name:  "Macbook Pro",
-		Price: 1,
+		Name:     "Macbook Pro",
+		Price:    1,
 		Quantity: 1,
-	},{
-		Name:  "Alexa Speaker",
-		Price: 1,
+	}, {
+		Name:     "Alexa Speaker",
+		Price:    1,
 		Quantity: 1,
 	}}
 	cart := dto.ShoppingCart{
@@ -123,7 +123,7 @@ func TestShouldReturnNoPromosWhenNoPromosAreAvailable(t *testing.T) {
 	products := []dto.Product{{
 		Name:  "Macbook Pro",
 		Price: 1,
-	},{
+	}, {
 		Name:  "Macbook Pro",
 		Price: 1,
 	}}

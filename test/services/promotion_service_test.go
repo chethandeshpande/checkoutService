@@ -27,10 +27,10 @@ func TestShouldApplyApplicablePromotions(t *testing.T) {
 				Name:  "Raspberry Pi",
 				Price: 30,
 			},
-		}	}
+		}}
 	cartAfterPromo := services.ApplyPromos(cart, []data.PromotionDetails{promo})
 
-	if diff := math.Abs(cartAfterPromo.TotalPrice - 100); diff > 0.000001 || len(cartAfterPromo.Products) != 2  {
+	if diff := math.Abs(cartAfterPromo.TotalPrice - 100); diff > 0.000001 || len(cartAfterPromo.Products) != 2 {
 		t.Errorf("Applicable promotion not applied! Expected: RaspberryPi to be applied")
 	}
 }

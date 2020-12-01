@@ -10,8 +10,8 @@ type DiscountAmountOnTotalPrice struct{}
 
 func (DiscountAmountOnTotalPrice) Apply(cart dto.ShoppingCart, promotion data.PromotionDetails) dto.ShoppingCart {
 	priceAfterDiscount := cart.TotalPrice - promotion.DiscountAmount
-	return dto.ShoppingCart {
+	return dto.ShoppingCart{
 		Products:   cart.Products,
-		TotalPrice: math.Round(priceAfterDiscount * 100)/100,
+		TotalPrice: math.Round(priceAfterDiscount*100) / 100,
 	}
 }
