@@ -18,7 +18,7 @@ func TestShouldReturnApplicablePromotionsForTheProductsInTheCart(t *testing.T) {
 		TotalPrice: 0,
 	}
 	promo := data.PromotionDetails{
-		PromotionName:      "RaspberryPi",
+		PromotionName:      "RaspberryPiFree",
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
@@ -51,7 +51,7 @@ func TestShouldReturnOnlyOnePromotionWhenSameProductIsSelectedMultipleTimes(t *t
 		TotalPrice: 0,
 	}
 	promo := data.PromotionDetails{
-		PromotionName:      "RaspberryPi",
+		PromotionName:      "RaspberryPiFree",
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
@@ -88,7 +88,7 @@ func TestShouldReturnPromotionsRespectiveToTheProductsSelected(t *testing.T) {
 		TotalPrice: 0,
 	}
 	macbookPro := data.PromotionDetails{
-		PromotionName:      "RaspberryPi",
+		PromotionName:      "RaspberryPiFree",
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
@@ -147,7 +147,7 @@ func TestShouldReturnPromotionWhenThereAreNoProducts(t *testing.T) {
 		TotalPrice: 0,
 	}
 	promo := data.PromotionDetails{
-		PromotionName:      "RaspberryPi",
+		PromotionName:      "RaspberryPiFree",
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
@@ -179,7 +179,7 @@ func TestShouldNotApplyPromotionIfMinimumQuantityIsNotSelected(t *testing.T) {
 		TotalPrice: 0,
 	}
 	promo := data.PromotionDetails{
-		PromotionName:      "RaspberryPi",
+		PromotionName:      "RaspberryPiFree",
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    2,
 		DiscountPercentage: 0,
@@ -211,7 +211,7 @@ func TestShouldReturnPromotionIfPromotionIsNotForSameProduct(t *testing.T) {
 		TotalPrice: 0,
 	}
 	promo := data.PromotionDetails{
-		PromotionName:      "RaspberryPi",
+		PromotionName:      "RaspberryPiFree",
 		ProductName:        "Google Home",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,

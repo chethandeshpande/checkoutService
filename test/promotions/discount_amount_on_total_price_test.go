@@ -19,7 +19,7 @@ func TestShouldWaiveOneProductPrice(t *testing.T) {
 		TotalPrice: 100,
 	}
 	promo := data.PromotionDetails{
-		PromotionName:      "RaspberryPi",
+		PromotionName:      "RaspberryPiFree",
 		ProductName:        "Google Home",
 		MinimumQuantity:    1,
 		DiscountPercentage: 10,

@@ -1,8 +1,14 @@
 package dto
 
+import "checkoutService/models/data"
+
+type AdditionalDetails struct {
+	AppliedPromos []data.PromotionDetails
+}
 type ShoppingCart struct {
-	Products   []Product
-	TotalPrice float64
+	Products          []Product
+	TotalPrice        float64
+	AdditionalDetails AdditionalDetails
 }
 
 type Product struct {

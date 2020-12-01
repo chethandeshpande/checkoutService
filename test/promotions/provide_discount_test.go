@@ -19,7 +19,7 @@ func TestShouldProvideDiscount(t *testing.T) {
 		TotalPrice: 100,
 	}
 	promo := data.PromotionDetails{
-		PromotionName:      "RaspberryPi",
+		PromotionName:      "RaspberryPiFree",
 		ProductName:        "Alexa Speakers",
 		MinimumQuantity:    1,
 		DiscountPercentage: 10,

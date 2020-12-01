@@ -19,7 +19,7 @@ func TestShouldProvideAProductFree(t *testing.T) {
 		TotalPrice: 0,
 	}
 	promo := data.PromotionDetails{
-		PromotionName:      "RaspberryPi",
+		PromotionName:      "RaspberryPiFree",
 		ProductName:        "Macbook Pro",
 		MinimumQuantity:    1,
 		DiscountPercentage: 0,
