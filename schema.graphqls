@@ -1,0 +1,32 @@
+type Product {
+	name: String!
+	price: Float!
+	quantity: Int!
+}
+
+type PromotionDetails {
+	promotionName: String!
+	productName: String!
+	minimumQuantity: Int!
+	discountPercentage: Float!
+	discountAmount: Float!
+}
+
+type AdditionalDetails {
+	appliedPromos: [PromotionDetails]!
+}
+
+type ShoppingCart {
+    product: [Product]
+    totalPrice: Float!
+    additionalDetails: AdditionalDetails!
+}
+
+input NewShoppingCart {
+  product: [Product]!
+  totalPrice: String!
+}
+
+type Mutation {
+  checkout(input: NewShoppingCart!): ShoppingCart!
+}
